@@ -18,7 +18,7 @@ const getProductById: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async 
   }
 };
 
-const getProducts: () => Promise<Array<IProduct>> = async () => {
+const getProducts: () => Promise<Array<IProduct>> = () => {
   return new Promise((resolve) => {
     setTimeout(() => resolve(products), 0);
   })
