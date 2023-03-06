@@ -3,7 +3,7 @@ import { IProduct } from '../src/models/Product';
 export const products: Array<IProduct> = [
 	{
 			id: 1,
-			title: 'Horizen',
+			title: 'Horizon',
 			price: 1,
 			imgLink: 'https://gmedia.playstation.com/is/image/SIEPDC/ps5-games-horizon-forbidden-west-image-block-01-en-28jul21?$800px--t$',
 			count: 1,

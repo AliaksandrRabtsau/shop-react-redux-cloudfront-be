@@ -9,7 +9,7 @@ import schema from './schema';
 const getProductById: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
   try {
     const { productId } = event.pathParameters;
-    const product = await getProductByIdTimeOut(productId);
+    const product = await getProductByIdTimeOut(+productId);
     return formatJSONResponse(product);
   } catch (e) {
     return formatJSONResponse({
