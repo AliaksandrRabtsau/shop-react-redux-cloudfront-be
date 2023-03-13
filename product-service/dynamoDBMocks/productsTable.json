@@ -1,0 +1,94 @@
+{
+  "Products_table": [
+    {
+      "PutRequest": {
+        "Item": {
+          "id": {
+            "S": "7845036e-8ca9-4fad-acfb-3243ec8dabf3"
+          },
+          "title": {
+            "S": "Horizon"
+          },
+          "description": {
+            "S": "Forbidden West"
+          },
+          "price": {
+            "N": "5"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": {
+            "S": "3d50dc6b-474c-45b6-8ecc-f9eff1990502"
+          },
+          "title": {
+            "S": "Ghost of Tsushima"
+          },
+          "description": {
+            "S": "Director's cut"
+          },
+          "price": {
+            "N": "10"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": {
+            "S": "74adf13b-a07c-454a-8747-7e412b6477ee"
+          },
+          "title": {
+            "S": "Death Stranding"
+          },
+          "description": {
+            "S": "Director's cut"
+          },
+          "price": {
+            "N": "15"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": {
+            "S": "291448f9-b0bc-4f53-9104-2799a5c7d89e"
+          },
+          "title": {
+            "S": "Cyberpunk 2077"
+          },
+          "description": {
+            "S": "PS4/PS5"
+          },
+          "price": {
+            "N": "20"
+          }
+        }
+      }
+    },
+    {
+      "PutRequest": {
+        "Item": {
+          "id": {
+            "S": "bbd821ed-6c4d-45ec-976d-837c20c28b9d"
+          },
+          "title": {
+            "S": "The Last of Us"
+          },
+          "description": {
+            "S": "Part One"
+          },
+          "price": {
+            "N": "25"
+          }
+        }
+      }
+    }
+  ]
+}
