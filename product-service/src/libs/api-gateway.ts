@@ -10,9 +10,9 @@ const defaultHeaders = {
   'Access-Control-Allow-Origin': '*',
 }
 
-export const formatJSONResponse = (response: Record<string, unknown>) => {
+export const formatJSONResponse = (response: Record<string, unknown>, status = 200) => {
   return {
-    statusCode: 200,
+    statusCode: status,
     headers: {
       ...defaultHeaders
     },
