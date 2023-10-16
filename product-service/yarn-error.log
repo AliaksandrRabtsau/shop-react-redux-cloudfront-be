@@ -1,0 +1,65 @@
+Arguments: 
+  /Users/Aliaksandr_Rabtsau/.nvm/versions/node/v16.13.1/bin/node /Users/Aliaksandr_Rabtsau/.nvm/versions/node/v16.13.1/bin/yarn
+
+PATH: 
+  /Users/Aliaksandr_Rabtsau/.nvm/versions/node/v16.13.1/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/Aliaksandr_Rabtsau/.nvm/versions/node/v16.13.1/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.13.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://axs-971217900852.d.codeartifact.us-west-2.amazonaws.com/npm/npm/@middy%2fcore: Unauthenticated: request used expired credentials. Please renew your credentials.
+      at Request.params.callback [as _callback] (/Users/Aliaksandr_Rabtsau/.nvm/versions/node/v16.13.1/lib/node_modules/yarn/lib/cli.js:66145:18)
+      at Request.self.callback (/Users/Aliaksandr_Rabtsau/.nvm/versions/node/v16.13.1/lib/node_modules/yarn/lib/cli.js:140890:22)
+      at Request.emit (node:events:390:28)
+      at Request.<anonymous> (/Users/Aliaksandr_Rabtsau/.nvm/versions/node/v16.13.1/lib/node_modules/yarn/lib/cli.js:141862:10)
+      at Request.emit (node:events:390:28)
+      at Gunzip.<anonymous> (/Users/Aliaksandr_Rabtsau/.nvm/versions/node/v16.13.1/lib/node_modules/yarn/lib/cli.js:141784:12)
+      at Object.onceWrapper (node:events:509:28)
+      at Gunzip.emit (node:events:390:28)
+      at endReadableNT (node:internal/streams/readable:1343:12)
+      at processTicksAndRejections (node:internal/process/task_queues:83:21)
+
+npm manifest: 
+  {
+    "name": "product-service",
+    "version": "1.0.0",
+    "description": "Serverless aws-nodejs-typescript template",
+    "main": "serverless.ts",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "engines": {
+      "node": ">=14.15.0"
+    },
+    "dependencies": {
+      "@middy/core": "^3.4.0",
+      "@middy/http-json-body-parser": "^3.4.0"
+    },
+    "devDependencies": {
+      "@serverless/typescript": "^3.0.0",
+      "@types/aws-lambda": "^8.10.71",
+      "@types/node": "^14.14.25",
+      "esbuild": "^0.14.11",
+      "json-schema-to-ts": "^1.5.0",
+      "serverless": "^3.0.0",
+      "serverless-esbuild": "^1.23.3",
+      "ts-node": "^10.4.0",
+      "tsconfig-paths": "^3.9.0",
+      "typescript": "^4.1.3"
+    },
+    "author": "The serverless webpack authors (https://github.com/elastic-coders/serverless-webpack)",
+    "license": "MIT"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

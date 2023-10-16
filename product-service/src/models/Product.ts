@@ -6,3 +6,8 @@ export interface IProduct {
 	count: number | string,
   description: string, 
 }
+
+export interface IStock {
+  product_id: string,
+  count: number,
+}
