@@ -58,13 +58,33 @@ class DynamoService {
   static createProduct = async (product: IProduct) => {
     return DynamoService.put(DynamoService.productsTableName, product);
   }
+
+  static putWithTransaction = async (product: IProduct, stock: IStock) => {
+    const params = {
+      TransactItems: [
+        {
+          Put: {
+            TableName: DynamoService.productsTableName,
+            Item: product,
+          },
+        },
+        {
+          Put: {
+            TableName: DynamoService.stocksTableName,
+            Item: stock,
+          },
+        },
+      ]
+    };
+    return DynamoService.dynamo.transactWrite(params).promise();
+  }
 }
 
-const getProductStocks: () => Promise<Array<ProductStock>> = async () => {
+const getProductStocks: () => Promise<Array<any>> = async () => {
   return await DynamoService.getProductStocks();
 }
 
-const getProductStockById: (productId: string) => Promise<ProductStock> = async (productId) => {
+const getProductStockById: (productId: string) => Promise<any> = async (productId) => {
   const products = await getProductStocks();
   const product = products.find(p => p.id === productId);
   if (!product) {
@@ -77,8 +97,13 @@ const createProductMethod: (product: IProduct) => Promise<any> = async (product)
   return await DynamoService.createProduct(product);
 }
 
+const createProductTransaction: (product: IProduct, stock: IStock) => Promise<any> = async (product, stock) => {
+  return await DynamoService.putWithTransaction(product, stock);
+}
+
 export {
   getProductStocks,
   getProductStockById,
   createProductMethod,
+  createProductTransaction,
 }

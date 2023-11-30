@@ -7,7 +7,7 @@ import {
 import { parseCsvStream } from '@utils/parse-csv';
 import  { SQSClient, SendMessageCommand } from "@aws-sdk/client-sqs"
 
-const QUEUE_URL = 'https://sqs.eu-west-1.amazonaws.com/715296600547/products-queue';
+const QUEUE_URL = 'https://sqs.eu-west-1.amazonaws.com/715296600547/products-queue1';
 
 const importFileParser = async (event) => {
   try {

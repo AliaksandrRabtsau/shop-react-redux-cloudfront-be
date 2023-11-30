@@ -4,7 +4,7 @@ import {
   getProducts,
   getProductById,
   createProduct,
-  catalogBatchProcess,
+  catalogBatchProcess1,
 } from '@functions/index';
 
 
@@ -35,12 +35,6 @@ const serverlessConfiguration: AWS = {
         statements: [
           {
             Effect: 'Allow',
-            // Action: 'sns:Publish',
-            // Action: [
-            //   'sns:CreateTopic',
-            //   'sns:publish',
-            //   'sns:Subscribe'
-            // ],
             Action: 'SQS:*',
             Resource: '${self:provider.environment.CREATE_PRODUCT_TOPIC_ARN}',
           }
@@ -53,7 +47,7 @@ const serverlessConfiguration: AWS = {
     getProducts,
     getProductById,
     createProduct,
-    catalogBatchProcess,
+    catalogBatchProcess1,
   },
   package: { individually: true },
   custom: {
@@ -73,13 +67,13 @@ const serverlessConfiguration: AWS = {
       catalogItemsQueue: {
         Type: 'AWS::SQS::Queue',
         Properties: {
-          QueueName: 'products-queue',
+          QueueName: 'products-queue1',
         },
       },
       createProductTopic: {
         Type: 'AWS::SNS::Topic',
         Properties: {
-          TopicName: 'aws-course-create-product-topic',
+          TopicName: 'products-topic',
           Subscription: [
             {
               Protocol: 'email',
@@ -88,19 +82,19 @@ const serverlessConfiguration: AWS = {
           ],
         },
       },
-      // createProductTopicSubscriptionByPrice: {
-      //   Type: 'AWS::SNS::Subscription',
-      //   Properties: {
-      //     Protocol: 'email',
-      //     Endpoint: 'console2005@ya.ru',
-      //     TopicArn: '${self:provider.environment.CREATE_PRODUCT_TOPIC_ARN}',
-      //     TopicArn: 'arn:aws:sns:eu-west-1:715296600547:aws-course-create-product-topic',
-      //     FilterPolicyScope: 'MessageBody',
-      //     FilterPolicy: {
-      //       price: [{ numeric: ['>', 10, '<=', 20] }],
-      //     },
-      //   }
-      // }
+      createProductTopicSubscriptionByPrice: {
+        Type: 'AWS::SNS::Subscription',
+        Properties: {
+          Protocol: 'email',
+          Endpoint: 'console2005@ya.ru',
+          TopicArn: '${self:provider.environment.CREATE_PRODUCT_TOPIC_ARN}',
+          // TopicArn: 'arn:aws:sns:eu-west-1:715296600547:products',
+          FilterPolicyScope: 'MessageBody',
+          FilterPolicy: {
+            price: [{ numeric: ['>', 10, '<=', 20] }],
+          },
+        }
+      }
     }
   }
 };

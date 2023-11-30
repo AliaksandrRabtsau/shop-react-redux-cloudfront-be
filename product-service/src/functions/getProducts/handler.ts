@@ -10,9 +10,7 @@ import schema from './schema';
 
 const getProducts: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async () => {
   try {
-    console.log('Dynamo:event:getProductsList');
     const products = await getProductStocks();
-    console.log('Dynamo:result:getProductsList', products);
     return formatJSONResponse(products);
   } catch (e) {
     return formatJSONResponse({ error: e.message }, 500);

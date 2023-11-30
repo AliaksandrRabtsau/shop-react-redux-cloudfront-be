@@ -4,8 +4,8 @@ import { SQSEvent } from 'aws-lambda';
 import { createProductTransaction as createProductRequest } from '@libs/dynamo-service';
 
 
-const catalogBatchProcess = async (event: SQSEvent) => {
-  console.log('SQSHandler:event:catalogBatchProcess', event);
+const catalogBatchProcess1 = async (event: SQSEvent) => {
+  console.log('SQSHandler:event:catalogBatchProcess1', event);
 
   try {
     const snsClient = new SNSClient({ region: process.env.AWS_REGION });
@@ -36,4 +36,4 @@ const catalogBatchProcess = async (event: SQSEvent) => {
   }
 };
 
-export const main = catalogBatchProcess;
+export const main = catalogBatchProcess1;

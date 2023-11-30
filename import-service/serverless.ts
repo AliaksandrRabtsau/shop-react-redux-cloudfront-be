@@ -34,7 +34,7 @@ const serverlessConfiguration: AWS = {
         Effect: 'Allow',
         // Action: 'sqs:SendMessage',
         Action: 'sqs:*',
-        Resource: 'arn:aws:sqs:eu-west-1:715296600547:products-queue',
+        Resource: 'arn:aws:sqs:eu-west-1:715296600547:products-queue1',
       },
     ],
     httpApi: {
