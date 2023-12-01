@@ -4,6 +4,7 @@ import {
   getProducts,
   getProductById,
   createProduct,
+  catalogBatchProcess1,
 } from '@functions/index';
 
 
@@ -25,11 +26,19 @@ const serverlessConfiguration: AWS = {
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
       PRODUCTS_TABLE_NAME: 'Products_table',
       STOCKS_TABLE_NAME: 'Stocks_table',
+      CREATE_PRODUCT_TOPIC_ARN: { 'Ref': 'createProductTopic' },
     },
     iam: {
       role: {
         name: 'DynamoDBfullaccessLambdasServeless',
         managedPolicies: ['arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess'],
+        statements: [
+          {
+            Effect: 'Allow',
+            Action: 'SQS:*',
+            Resource: '${self:provider.environment.CREATE_PRODUCT_TOPIC_ARN}',
+          }
+        ]
       },
     },
   },
@@ -38,6 +47,7 @@ const serverlessConfiguration: AWS = {
     getProducts,
     getProductById,
     createProduct,
+    catalogBatchProcess1,
   },
   package: { individually: true },
   custom: {
@@ -52,6 +62,41 @@ const serverlessConfiguration: AWS = {
       concurrency: 10,
     },
   },
+  resources: {
+    Resources: {
+      catalogItemsQueue: {
+        Type: 'AWS::SQS::Queue',
+        Properties: {
+          QueueName: 'products-queue1',
+        },
+      },
+      createProductTopic: {
+        Type: 'AWS::SNS::Topic',
+        Properties: {
+          TopicName: 'products-topic',
+          Subscription: [
+            {
+              Protocol: 'email',
+              Endpoint: 'goodspeed.ar@gmail.com',
+            },
+          ],
+        },
+      },
+      createProductTopicSubscriptionByPrice: {
+        Type: 'AWS::SNS::Subscription',
+        Properties: {
+          Protocol: 'email',
+          Endpoint: 'console2005@ya.ru',
+          TopicArn: '${self:provider.environment.CREATE_PRODUCT_TOPIC_ARN}',
+          // TopicArn: 'arn:aws:sns:eu-west-1:715296600547:products',
+          FilterPolicyScope: 'MessageBody',
+          FilterPolicy: {
+            price: [{ numeric: ['>', 10, '<=', 20] }],
+          },
+        }
+      }
+    }
+  }
 };
 
 module.exports = serverlessConfiguration;
