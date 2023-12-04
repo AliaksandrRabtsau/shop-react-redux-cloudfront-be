@@ -34,11 +34,20 @@ const serverlessConfiguration: AWS = {
         Effect: 'Allow',
         // Action: 'sqs:SendMessage',
         Action: 'sqs:*',
-        Resource: 'arn:aws:sqs:eu-west-1:715296600547:products-queue1',
+        Resource: 'arn:aws:sqs:${aws:region}:${aws:accountId}:products-queue1',
       },
     ],
     httpApi: {
       cors: true,
+      authorizers: {
+        basicAuthorizer: {
+          type: 'request',
+          name: 'basic1',
+          functionArn: 'arn:aws:lambda:${aws:region}:${aws:accountId}:function:authorization-service-dev-basicAuthorizer',
+          resultTtlInSeconds: 0,
+          identitySource: '$request.header.Authorization',
+        },
+      },
     },
   },
 
