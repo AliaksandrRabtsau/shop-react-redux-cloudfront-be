@@ -8,10 +8,14 @@ export default {
       httpApi: {
         method: 'get',
         path: '/${self:provider.stage}/import',
+        cors: true,
         request: {
           schemas: {
             'application/json': schema,
           },
+        },
+        authorizer: {
+          name: 'basicAuthorizer',
         },
       },
     },

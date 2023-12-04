@@ -7,6 +7,7 @@ export default {
       s3: {
         bucket: 'aws-course-shop-bucket',
         event: 's3:ObjectCreated:*',
+        cors: true,
         rules: [{
           prefix: 'uploaded/',
         }],
